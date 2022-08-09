@@ -16,6 +16,14 @@ export class ProductService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getProduct(theProductId: number): Observable<Product> {
+    
+    //need to build the url based on the product id. We get this configuration out of the box from Spring Data Rest. There is no ztra configuration on the Spring Boot app required
+    const productUrl = `${this.baseUrl}/${theProductId}`;
+
+    return this.httpClient.get<Product>(productUrl);
+  }
+
   getProductList(theCategoryId: number): Observable<Product[]> {
 
     // need to build URL based on category id 
